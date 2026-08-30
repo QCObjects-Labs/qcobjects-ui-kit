@@ -1,10 +1,3 @@
-const WIDGET_TAGS = [
-  "kit-card",
-  "kit-counter",
-  "kit-tabset",
-  "kit-panel"
-];
-
 function shadowOf(qc) {
   const host = qc.querySelector(".shadowHost");
   return host && host.shadowRoot ? host.shadowRoot : null;
@@ -72,38 +65,6 @@ function toggleLog() {
   }
   setLogLabel();
 }
-
-document.addEventListener("click", (event) => {
-  const path = event.composedPath();
-  const target = path[0];
-  if (!target) return;
-  const root = target.getRootNode();
-  if (!(root instanceof ShadowRoot)) return;
-
-  const action = target.closest("[data-action]");
-  if (action) {
-    const countEl = root.querySelector(".kit-count");
-    if (countEl) {
-      const current = parseInt(countEl.getAttribute("data-count") || countEl.textContent, 10) || 0;
-      const next = action.getAttribute("data-action") === "inc" ? current + 1 : current - 1;
-      countEl.textContent = next;
-      countEl.setAttribute("data-count", next);
-    }
-    return;
-  }
-
-  const tab = target.closest(".kit-tabs [data-tab]");
-  if (tab) {
-    const panelKey = tab.getAttribute("data-tab");
-    root.querySelectorAll(".kit-tabs .tab").forEach((btn) => {
-      btn.classList.toggle("active", btn === tab);
-    });
-    root.querySelectorAll(".tab-panel").forEach((panel) => {
-      const active = panel.getAttribute("data-panel") === panelKey;
-      panel.classList.toggle("active", active);
-    });
-  }
-});
 
 const boot = () => {
   setLogLabel();

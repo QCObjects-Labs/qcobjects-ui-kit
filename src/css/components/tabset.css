@@ -1,0 +1,17 @@
+@import url("./../tailwind.css");
+@import url("./../theme.css");
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.kit-tabs .tab.active {
+  background: var(--kit-accent);
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/*# sourceMappingURL=tabset.css.map */

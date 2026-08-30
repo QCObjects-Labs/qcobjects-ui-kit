@@ -1,0 +1,5 @@
+/* Side-effect SCSS entry so card.widget() utility classes appear in tailwind.css */
+@import url("./../tailwind.css");
+@import url("./../theme.css");
+
+/*# sourceMappingURL=card.css.map */

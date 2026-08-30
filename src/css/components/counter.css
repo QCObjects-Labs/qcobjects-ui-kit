@@ -1,0 +1,8 @@
+@import url("./../tailwind.css");
+@import url("./../theme.css");
+.kit-count {
+  min-width: 3ch;
+  text-align: center;
+}
+
+/*# sourceMappingURL=counter.css.map */

@@ -100,7 +100,9 @@
     <article class="demo" data-widget="kit-counter">
       <h2>Counter</h2>
       <p class="desc">
-        Interaction handled by event delegation from the shadow root — no re-render.
+        Interaction is owned by the component itself: its <code>done()</code> hook
+        queries the shadow root via <code>this.hostElements(...)</code> and attaches
+        listeners directly to its own elements — no global document delegation.
         Try the buttons; the tree dump updates.
       </p>
       <div class="stage">
@@ -112,11 +114,12 @@
     <article class="demo" data-widget="kit-tabset">
       <h2>Tabset</h2>
       <p class="desc">
-        A purely static external template (it needs no class — the base
-        <code>Component</code> with <code>tplsource="default"</code> loads it).
+        Tabs are driven by the component's own <code>done()</code> hook, which
+        scopes its listeners to this widget's shadow root via
+        <code>this.hostElements(...)</code> — no global delegation.
       </p>
       <div class="stage">
-        <kit-tabset name="tabset"></kit-tabset>
+        <kit-tabset id="tabset" name="tabset" componentClass="com.qcobjects.components.tabset.Tabset"></kit-tabset>
       </div>
       <pre class="dump">loading…</pre>
     </article>

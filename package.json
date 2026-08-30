@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build:assets": "mkdir -p browser && cp ./src/index.html browser/index.html && rm -rf browser/templates && cp -R src/templates browser/templates",
+    "build:sass": "npx -y sass@1.77.8 src/scss:src/css",
+    "build:tailwind": "npx -y tailwindcss@3.4.14 -i ./src/css/tailwind-source.css -o ./src/css/tailwind.css",
+    "build:assets": "mkdir -p browser && cp ./src/index.html browser/index.html && rm -rf browser/templates && cp -Rf src/templates/. browser/templates/ 2>/dev/null; rm -rf browser/css && cp -Rf src/css/. browser/css/ 2>/dev/null; echo assets-ok",
+    "build:css": "npm run build:sass && npm run build:tailwind && npm run build:assets",
     "build:js": "npx -y esbuild@0.17.19 src/js/init.js --bundle --outdir=browser/js --keep-names --global-name=global --sourcemap --splitting --chunk-names=chunks/[name]-[hash] --format=esm --target=es2021",
-    "build": "npm run build:assets && npm run build:js",
+    "build": "npm run build:css && npm run build:js",
     "start": "npm run build && python3 -m http.server 8080 --directory browser"
   },
   "dependencies": {

@@ -1,0 +1,6 @@
+/* Side-effect SCSS entry so card.widget() utility classes appear in tailwind.css */
+// The template uses Tailwind utility classes directly (bg-slate-800, border-slate-700,
+// rounded-xl, ...). This file exists to mirror the reference pipeline (SCSS -> CSS)
+// and to import the compiled theme/tailwind tokens used by the widget markup.
+@import url("./../tailwind.css");
+@import url("./../theme.css");

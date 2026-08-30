@@ -1,31 +1,8 @@
 <style>
-.kit-card {
-  display: block;
-  border: 1px solid #334155;
-  background: #1e293b;
-  border-radius: 12px;
-  padding: 18px 20px;
-  max-width: 420px;
-}
-.kit-card h3 {
-  margin: 4px 0 8px;
-  color: #38bdf8;
-  font-size: 18px;
-}
-.kit-card p {
-  margin: 0 0 12px;
-  color: #cbd5e1;
-  line-height: 1.5;
-}
-.kit-card .tag {
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #94a3b8;
-}
+  @import url("css/components/card.css");
 </style>
-<section class="kit-card">
-  <div class="tag">{{tag}}</div>
-  <h3>{{title}}</h3>
-  <p>{{body}}</p>
+<section class="max-w-md rounded-xl border border-slate-700 bg-slate-800 p-5">
+  <div class="text-[11px] uppercase tracking-widest text-slate-400">{{tag}}</div>
+  <h3 class="mt-1 text-lg font-semibold text-sky-400">{{title}}</h3>
+  <p class="mt-2 text-sm leading-relaxed text-slate-300">{{body}}</p>
 </section>

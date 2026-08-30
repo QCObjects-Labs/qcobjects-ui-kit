@@ -1,0 +1,12 @@
+:root {
+  /* Component theming tokens consumed by the widget SCSS. */
+  --kit-surface: #1e293b;
+  --kit-surface-2: #0f172a;
+  --kit-border: #334155;
+  --kit-text: #e2e8f0;
+  --kit-muted: #94a3b8;
+  --kit-accent: #0ea5e9;
+  --kit-accent-strong: #38bdf8;
+  --kit-danger: #f87171;
+  --kit-radius: 0.75rem;
+}
