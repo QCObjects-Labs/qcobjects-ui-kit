@@ -7,15 +7,6 @@ import "./components/panel";
 import "./components/layout";
 import "./playground";
 
-RegisterWidgets(
-  "kit-card",
-  "kit-counter",
-  "kit-statchip",
-  "kit-tabset",
-  "kit-panel",
-  "kit-layout"
-);
-
 CONFIG.set("sourceType", "module");
 CONFIG.set("componentsBasePath", "templates/components/");
 CONFIG.set("tplextension", "tpl.html");

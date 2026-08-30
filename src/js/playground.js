@@ -11,8 +11,7 @@ function dumpTree(widget) {
   const lines = [];
   const visit = (node, depth) => {
     node.querySelectorAll("quick-component").forEach((qc) => {
-      const kindClassName = qc.getAttribute("componentClass") ||
-        (qc.getAttribute("name") ? "Component (base)" : "(none)");
+      const kindClassName = qc.getAttribute("componentClass") || "Component";
       lines.push(
         `${"  ".repeat(depth)}<${qc.tagName.toLowerCase()} ` +
         `name="${qc.getAttribute("name")}" ` +
@@ -35,8 +34,7 @@ function dumpTree(widget) {
 function dumpAll() {
   let total = 0;
   document.querySelectorAll(".demo").forEach((demo) => {
-    const tag = demo.getAttribute("data-widget");
-    const widget = demo.querySelector(tag);
+    const widget = demo.querySelector("quick-component");
     const out = demo.querySelector(".dump");
     if (!widget || !out) return;
     out.textContent = dumpTree(widget);

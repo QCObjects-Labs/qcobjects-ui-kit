@@ -71,10 +71,11 @@
   <header class="page-header">
     <h1>QCObjects UI Kit — Playground</h1>
     <p>
-      Every widget below is a QCObjects component: a <b>smart widget</b> element that
-      renders a <b>generic component</b> from an external <code>.tpl.html</code> template
-      into a <em>native shadow root</em>. Below each widget, the inspector dumps its live
-      component tree from <code>.shadowHost.shadowRoot.innerHTML</code>.
+      Every widget below is a QCObjects component declared as a plain
+      <code>&lt;quick-component&gt;</code> element whose <code>componentClass</code>
+      is a string resolving to a component class. Each renders from an external
+      <code>.tpl.html</code> template into a <em>native shadow root</em>. Below each
+      widget, the inspector dumps its live component tree.
     </p>
   </header>
 
@@ -85,7 +86,7 @@
   </section>
 
   <main>
-    <kit-layout id="layout" name="layout" componentClass="com.qcobjects.components.layout.Layout">
+    <quick-component id="layout" name="layout" shadowed="true" componentClass="com.qcobjects.components.layout.Layout">
     <article class="demo" data-widget="kit-card">
       <h2>Card</h2>
       <p class="desc">
@@ -93,7 +94,7 @@
         resolved from <code>componentClass="com.qcobjects.components.card.Card"</code>.
       </p>
       <div class="stage">
-        <kit-card id="card" name="card" componentClass="com.qcobjects.components.card.Card"></kit-card>
+        <quick-component id="card" name="card" shadowed="true" componentClass="com.qcobjects.components.card.Card"></quick-component>
       </div>
       <pre class="dump">loading…</pre>
     </article>
@@ -107,7 +108,7 @@
         Try the buttons; the tree dump updates.
       </p>
       <div class="stage">
-        <kit-counter id="counter" name="counter" componentClass="com.qcobjects.components.counter.Counter"></kit-counter>
+        <quick-component id="counter" name="counter" shadowed="true" componentClass="com.qcobjects.components.counter.Counter"></quick-component>
       </div>
       <pre class="dump">loading…</pre>
     </article>
@@ -120,7 +121,7 @@
         <code>this.hostElements(...)</code> — no global delegation.
       </p>
       <div class="stage">
-        <kit-tabset id="tabset" name="tabset" componentClass="com.qcobjects.components.tabset.Tabset"></kit-tabset>
+        <quick-component id="tabset" name="tabset" shadowed="true" componentClass="com.qcobjects.components.tabset.Tabset"></quick-component>
       </div>
       <pre class="dump">loading…</pre>
     </article>
@@ -135,7 +136,7 @@
         <code>nav</code> works.
       </p>
       <div class="stage">
-        <kit-panel id="panel" name="panel" componentClass="com.qcobjects.components.panel.Panel"></kit-panel>
+        <quick-component id="panel" name="panel" shadowed="true" componentClass="com.qcobjects.components.panel.Panel"></quick-component>
       </div>
       <pre class="dump">loading…</pre>
     </article>
