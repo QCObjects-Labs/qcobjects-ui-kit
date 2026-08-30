@@ -1,0 +1,3 @@
+/* Side-effect SCSS entry so layout.widget() Tailwind utilities appear in tailwind.css */
+@import url("./../tailwind.css");
+@import url("./../theme.css");

@@ -77,7 +77,23 @@ const boot = () => {
   const redump = document.getElementById("redump");
   if (redump) redump.addEventListener("click", () => dumpAll());
 
-  [1200, 2400, 3600, 5200].forEach((ms) => setTimeout(dumpAll, ms));
+  // The root <kit-layout> is the main component; its done() is the structural
+  // "the root's component-stack construction finished" hook that fires last in
+  // a layout that owns the page. On 2.4.x, nested async builds can still be
+  // in flight when it fires, so after it triggers we settle-dump once more to
+  // capture the fully-loaded tree.
+  window.__onQcReady = () => {
+    dumpAll();
+    const settle = () => {
+      dumpAll();
+      const status = document.getElementById("dumpStatus");
+      if (status && window.__layoutReady) {
+        status.textContent =
+          `root layout done() → all ${window.__layoutReady.loaded}/${window.__layoutReady.total} components loaded`;
+      }
+    };
+    setTimeout(settle, 300);
+  };
 };
 
 if (document.readyState === "loading") {

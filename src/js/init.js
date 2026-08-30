@@ -4,6 +4,7 @@ import "./components/counter";
 import "./components/statchip";
 import "./components/tabset";
 import "./components/panel";
+import "./components/layout";
 import "./playground";
 
 RegisterWidgets(
@@ -11,7 +12,8 @@ RegisterWidgets(
   "kit-counter",
   "kit-statchip",
   "kit-tabset",
-  "kit-panel"
+  "kit-panel",
+  "kit-layout"
 );
 
 CONFIG.set("sourceType", "module");
