@@ -1,0 +1,15 @@
+{
+  "name": "qcobjects-ui-kit",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build:assets": "mkdir -p browser && cp ./src/index.html browser/index.html && rm -rf browser/templates && cp -R src/templates browser/templates",
+    "build:js": "npx -y esbuild@0.17.19 src/js/init.js --bundle --outdir=browser/js --keep-names --global-name=global --sourcemap --splitting --chunk-names=chunks/[name]-[hash] --format=esm --target=es2021",
+    "build": "npm run build:assets && npm run build:js",
+    "start": "npm run build && python3 -m http.server 8080 --directory browser"
+  },
+  "dependencies": {
+    "qcobjects": "2.4.99",
+    "qcobjects-sdk": "2.4.66"
+  }
+}

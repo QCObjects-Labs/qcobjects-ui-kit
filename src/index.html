@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QCObjects UI Kit — Playground</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0b1120;
+      color: #e2e8f0;
+    }
+    .page-header {
+      background: linear-gradient(180deg, #111c33, #0b1120);
+      border-bottom: 1px solid #1e293b;
+      padding: 28px 32px;
+    }
+    .page-header h1 { margin: 0 0 8px; font-size: 26px; color: #38bdf8; }
+    .page-header p { margin: 0; max-width: 720px; color: #94a3b8; line-height: 1.5; }
+    #toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 12px 32px;
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+    }
+    #toolbar button {
+      appearance: none;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    #toolbar button.on { background: #0ea5e9; color: #0f172a; border-color: #0ea5e9; font-weight: 600; }
+    #toolbar .hint { color: #64748b; font-size: 12px; }
+    main { max-width: 900px; margin: 0 auto; padding: 28px 32px 64px; }
+    .demo {
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      background: #0f172a;
+      padding: 20px 22px;
+      margin-bottom: 22px;
+    }
+    .demo h2 { margin: 0 0 4px; font-size: 17px; color: #e2e8f0; }
+    .demo .desc { margin: 0 0 16px; color: #64748b; font-size: 13px; }
+    .demo .stage { padding: 12px 0 16px; min-height: 44px; }
+    .demo pre.dump {
+      margin: 0;
+      padding: 14px;
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      color: #7dd3fc;
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      min-height: 40px;
+    }
+    .page-footer { padding: 20px 32px 40px; color: #475569; font-size: 12px; }
+  </style>
+  <script type="module" src="js/init.js"></script>
+</head>
+<body>
+  <header class="page-header">
+    <h1>QCObjects UI Kit — Playground</h1>
+    <p>
+      Every widget below is a QCObjects component: a <b>smart widget</b> element that
+      renders a <b>generic component</b> from an external <code>.tpl.html</code> template
+      into a <em>native shadow root</em>. Below each widget, the inspector dumps its live
+      component tree from <code>.shadowHost.shadowRoot.innerHTML</code>.
+    </p>
+  </header>
+
+  <section id="toolbar" hidden>
+    <button id="logToggle" type="button">Logger: OFF</button>
+    <button id="redump" type="button">Re-dump component trees</button>
+    <span id="dumpStatus" class="hint"></span>
+  </section>
+
+  <main>
+    <article class="demo" data-widget="kit-card">
+      <h2>Card</h2>
+      <p class="desc">
+        A component with class <code>data</code> bound via <code>{{...}}</code>;
+        resolved from <code>componentClass="com.qcobjects.components.card.Card"</code>.
+      </p>
+      <div class="stage">
+        <kit-card id="card" name="card" componentClass="com.qcobjects.components.card.Card"></kit-card>
+      </div>
+      <pre class="dump">loading…</pre>
+    </article>
+
+    <article class="demo" data-widget="kit-counter">
+      <h2>Counter</h2>
+      <p class="desc">
+        Interaction handled by event delegation from the shadow root — no re-render.
+        Try the buttons; the tree dump updates.
+      </p>
+      <div class="stage">
+        <kit-counter id="counter" name="counter" componentClass="com.qcobjects.components.counter.Counter"></kit-counter>
+      </div>
+      <pre class="dump">loading…</pre>
+    </article>
+
+    <article class="demo" data-widget="kit-tabset">
+      <h2>Tabset</h2>
+      <p class="desc">
+        A purely static external template (it needs no class — the base
+        <code>Component</code> with <code>tplsource="default"</code> loads it).
+      </p>
+      <div class="stage">
+        <kit-tabset name="tabset"></kit-tabset>
+      </div>
+      <pre class="dump">loading…</pre>
+    </article>
+
+    <article class="demo" data-widget="kit-panel">
+      <h2>Composed panel</h2>
+      <p class="desc">
+        Nested components: the panel's template contains
+        <code>&lt;quick-component componentClass="…StatChip"&gt;</code> elements,
+        built recursively by <code>__buildSubComponents__</code> — each is its own
+        component with its own shadow root. That is how the reference app's
+        <code>nav</code> works.
+      </p>
+      <div class="stage">
+        <kit-panel id="panel" name="panel" componentClass="com.qcobjects.components.panel.Panel"></kit-panel>
+      </div>
+      <pre class="dump">loading…</pre>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    qcobjects@2.4.99 + qcobjects-sdk@2.4.66 · built with esbuild · archived in QCObjects-Labs · findings in labs-docs/FINDINGS.md
+  </footer>
+</body>
+</html>

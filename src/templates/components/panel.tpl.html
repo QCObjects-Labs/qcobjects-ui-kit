@@ -1,0 +1,43 @@
+<style>
+.kit-panel {
+  border: 1px solid #334155;
+  background: #1e293b;
+  border-radius: 12px;
+  max-width: 440px;
+}
+.kit-panel-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid #334155;
+  font-size: 13px;
+  color: #94a3b8;
+}
+.kit-panel-head strong {
+  color: #e2e8f0;
+}
+.kit-panel-body {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 18px;
+  align-items: center;
+}
+.kit-panel-note {
+  margin: 0;
+  font-size: 12px;
+  color: #94a3b8;
+}
+</style>
+<section class="kit-panel">
+  <header class="kit-panel-head">
+    <strong>Composed panel</strong>
+    <span>{{bearer}}</span>
+  </header>
+  <div class="kit-panel-body">
+    <span class="kit-panel-note">Nested components, built recursively above/below:</span>
+    <quick-component componentClass="com.qcobjects.components.statchip.StatChip" name="statchip" data-stat="14" data-label="smart widgets"></quick-component>
+    <quick-component componentClass="com.qcobjects.components.statchip.StatChip" name="statchip" data-stat="42" data-label="templates served"></quick-component>
+  </div>
+</section>

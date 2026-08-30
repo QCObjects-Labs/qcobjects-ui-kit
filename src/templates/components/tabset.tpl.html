@@ -1,0 +1,55 @@
+<style>
+.kit-tabs {
+  display: flex;
+  gap: 6px;
+}
+.kit-tabs .tab {
+  appearance: none;
+  border: 0;
+  border-radius: 8px 8px 0 0;
+  padding: 8px 14px;
+  cursor: pointer;
+  background: #1e293b;
+  color: #94a3b8;
+  font-size: 13px;
+}
+.kit-tabs .tab.active {
+  background: #0ea5e9;
+  color: #0f172a;
+  font-weight: 600;
+}
+.kit-panels {
+  border: 1px solid #334155;
+  border-radius: 0 12px 12px 12px;
+  background: #1e293b;
+  padding: 18px;
+  min-height: 120px;
+}
+.tab-panel {
+  display: none;
+}
+.tab-panel.active {
+  display: block;
+}
+</style>
+<div class="kit-tabset">
+  <nav class="kit-tabs">
+    <button type="button" class="tab active" data-tab="a">Features</button>
+    <button type="button" class="tab" data-tab="b">Patterns</button>
+    <button type="button" class="tab" data-tab="c">Labs</button>
+  </nav>
+  <section class="kit-panels">
+    <div class="tab-panel active" data-panel="a">
+      Smart widgets and generic components; external <code>.tpl.html</code> templates;
+      native shadow-root rendering.
+    </div>
+    <div class="tab-panel" data-panel="b">
+      <code>componentClass</code> for class resolution; nested components built
+      recursively via <code>__buildSubComponents__</code>.
+    </div>
+    <div class="tab-panel" data-panel="c">
+      Verified on qcobjects@2.4.99 <em>(+ qcobjects-sdk@2.4.66)</em> in
+      QCObjects-Labs; see <code>labs-docs/FINDINGS.md</code>.
+    </div>
+  </section>
+</div>
