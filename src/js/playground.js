@@ -9,23 +9,24 @@ function oneLine(html, max = 180) {
 
 function dumpTree(widget) {
   const lines = [];
-  const visit = (node, depth) => {
-    node.querySelectorAll("quick-component").forEach((qc) => {
-      const kindClassName = qc.getAttribute("componentClass") || "Component";
-      lines.push(
-        `${"  ".repeat(depth)}<${qc.tagName.toLowerCase()} ` +
-        `name="${qc.getAttribute("name")}" ` +
-        `componentClass="${kindClassName}" ` +
-        `loaded="${qc.getAttribute("loaded")}">`
-      );
-      const sr = shadowOf(qc);
-      if (sr) {
-        lines.push(`${"  ".repeat(depth)}  shadowRoot[${sr.innerHTML.length}ch]: ${oneLine(sr.innerHTML)}`);
-        if (sr.querySelector("quick-component")) visit(sr, depth + 1);
-      } else {
-        lines.push(`${"  ".repeat(depth)}  (no shadow root yet)`);
-      }
-    });
+  const visit = (qc, depth) => {
+    const kindClassName = qc.getAttribute("componentClass") || "Component";
+    lines.push(
+      `${"  ".repeat(depth)}<${qc.tagName.toLowerCase()} ` +
+      `name="${qc.getAttribute("name")}" ` +
+      `componentClass="${kindClassName}" ` +
+      `loaded="${qc.getAttribute("loaded")}">`
+    );
+    const sr = shadowOf(qc);
+    const lightBody = Array.from(qc.children).filter((c) => c.tagName.toLowerCase() !== "style" && !(c.className && String(c.className).includes("shadowHost")));
+    if (sr) {
+      lines.push(`${"  ".repeat(depth)}  shadowRoot[${sr.innerHTML.length}ch]: ${oneLine(sr.innerHTML)}`);
+      sr.querySelectorAll("quick-component").forEach((nested) => visit(nested, depth + 1));
+    } else if (lightBody.length) {
+      lines.push(`${"  ".repeat(depth)}  lightDOM: ${oneLine(lightBody.map((c) => c.outerHTML).join(" "))}`);
+    } else {
+      lines.push(`${"  ".repeat(depth)}  (not rendered yet)`);
+    }
   };
   visit(widget, 0);
   return lines.length ? lines.join("\n") : "(no quick-component found)";
