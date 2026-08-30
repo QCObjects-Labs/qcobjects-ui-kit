@@ -1,4 +1,4 @@
-:root {
+:root, :host {
   /* Component theming tokens consumed by the widget SCSS. */
   --kit-surface: #1e293b;
   --kit-surface-2: #0f172a;

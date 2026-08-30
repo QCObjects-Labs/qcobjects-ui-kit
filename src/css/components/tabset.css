@@ -8,7 +8,7 @@
   display: block;
 }
 
-.kit-tabs .tab.active {
+.kit-tabset .tab.active {
   background: var(--kit-accent);
   color: #0f172a;
   font-weight: 600;
